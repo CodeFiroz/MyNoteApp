@@ -1,0 +1,74 @@
+.updateLayout{
+    margin: 0px auto;
+    max-width: 1200px;
+    border-radius: 15px;
+    padding: 40px;
+    background: #fdffc7;
+}
+
+.updateLayout h1{
+    font-size: 22px;
+    margin: 20px 0px;
+}
+
+.updateLayout h1 span{
+    color: #999;
+}
+
+.updateLayout form input[type="text"]{
+    width: 100%;
+    display: block;
+    padding: 10px;
+    font-family: "Poppins", sans-serif;
+    border: 1px solid #cccc;
+    outline: 0;
+    margin-bottom: 15px;
+}
+
+.updateLayout form textarea{
+    width: 100%;
+    display: block;
+    padding: 10px;
+    font-family: "Poppins", sans-serif;
+    border: 1px solid #cccc;
+    outline: 0;
+    margin-bottom: 15px;
+    resize: none;
+    height: 200px;
+}
+
+.updateLayout form button{
+    padding: 10px 40px;
+    font-family: "Poppins", sans-serif;
+    background: #f5700b;
+    border: 0;
+    outline: 0;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.themeSelection{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+  }
+  
+  .themeSelection label{
+    width: 15px;
+    height: 15px;
+    border-radius: 2px;
+    background: var(--i);
+    opacity: .8;
+    display: block;
+  }
+  
+  .themeSelection input:checked ~ label{
+    opacity: 1;
+    border-radius: 20px;
+    border: 1px solid #252525;
+  }
+  

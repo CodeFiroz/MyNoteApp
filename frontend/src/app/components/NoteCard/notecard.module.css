@@ -1,0 +1,52 @@
+.noteCard{
+    width: 100%;
+    padding: 15px;
+    border-radius: 15px;
+    background: var(--i);
+    min-height: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.noteCard h4{
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.noteCard p{
+    font-size: 12px;
+    font-weight: 400;
+    color: #272727;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin-bottom: 15px;
+}
+
+.noteCard .actionBtns{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+
+.noteCard .actionBtns button,
+.noteCard .actionBtns a{
+    border: 0;
+    text-decoration: none;
+    color: #000;
+    outline: 0;
+    font-size: 18px;
+    padding: 5px;
+    background: transparent;
+}
+
+.noteCard .actionBtns button:hover,
+.noteCard .actionBtns a:hover{
+    color: #fff;
+    cursor: pointer;
+}

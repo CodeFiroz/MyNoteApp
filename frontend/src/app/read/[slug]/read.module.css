@@ -1,0 +1,79 @@
+.readLayout{
+    margin: 0px auto;
+    max-width: 1200px;
+    border-radius: 15px;
+    padding: 40px;
+    background: var(--i);
+}
+
+.readLayout h1{
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.readLayout textarea{
+    color: #222222;
+    font-size: 14px;
+    border: 0;
+    outline: 0;
+    height: auto;
+    resize: none;
+    display: block;
+    width: 100%;
+    overflow-y: scroll;
+    font-family: "Poppins", sans-serif;
+    min-height: 300px;
+    background: transparent;
+}
+
+@media (max-width: 768px) {
+    .readLayout textarea{
+        height: 400px;
+    }
+}
+
+.readLayout textarea::-webkit-scrollbar{
+    width: 0;
+}
+
+.actionBtn{
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.actionBtn button{
+    display: inline-flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 20px;
+    margin-right: 15px;
+    cursor: pointer;
+    font-family: "Poppins", sans-serif;
+    outline: 0;
+    border: 0;
+    border-radius: 4px;
+    transition: .3s ease-in-out;
+}
+
+.actionBtn button i{
+    margin-right: 5px;
+    padding-top: 5px;
+}
+
+.actionBtn button:first-child{
+    background: #c00606;
+    color: #fff;
+}
+
+.actionBtn button:hover{
+    transform: scale(1.05);
+
+}
+
+.actionBtn button:first-child:hover{
+    background: #660000;
+    color: #fff;
+}

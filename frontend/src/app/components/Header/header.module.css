@@ -1,0 +1,56 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff1c6;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.4);
+    padding: 10px 60px;
+}
+
+.logo a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo a img{
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+}
+
+.logo a h4{
+    color: var(--foreground);
+    text-decoration: none;
+    font-size: 18px;
+    font-family: "Poppins", sans-serif;
+}
+
+.rightBar{
+    display: flex;
+    align-items: center;
+}
+
+.rightBar button{
+    font-size: 17px;
+    padding: 10px 30px;
+    border-radius: 5px;
+    background: #000;
+    color: #fff;
+    border: 0;
+    outline: 0;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+}
+
+.rightBar button:hover{
+    transform: scale(0.94);
+    background: #585858;
+}
+
+@media (max-width: 768px) {
+    .header{
+        padding: 10px 20px;
+    }
+}

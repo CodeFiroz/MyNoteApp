@@ -1,0 +1,34 @@
+
+
+
+.binLayout::-webkit-scrollbar{
+    width: 10px;
+    background: #454545;
+}
+
+.binLayout::-webkit-scrollbar-thumb{
+    background: #242424;
+    border-radius: 20px;
+}
+
+.binLayout h1{
+    font-size: 26px;
+    margin-bottom: 30px;
+    display: block;
+}
+
+
+.noteGrid{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    margin-top: 40px;
+}
+
+
+
+@media (max-width: 768px) {
+    .noteGrid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

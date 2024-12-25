@@ -1,0 +1,313 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+:root{
+  --background: #f8f8f8;
+  --foreground: #272727;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  width: 100%;
+  height: 100vh;
+  font-family: "Poppins", serif;
+}
+
+h1,
+h2, 
+h3, 
+h4, 
+h5,
+h6{
+  font-family: "Montserrat", serif;
+}
+
+.container{
+  padding: 40px; 
+}
+
+.noteGrid{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.newNote{
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  background: #faac05;
+  color: #000;
+  position: fixed;
+  bottom: 50px;
+  right: 80px;
+  z-index: 99999;
+  border: 0;
+  outline: 0;
+  border-radius: 50%;
+  font-size: 22px;
+  cursor: pointer;
+  transition: .4s ease-in-out;
+}
+
+.newNote i{
+  padding-top: 5px;
+  transition: .3s ease-in-out;
+}
+
+.newNote.active{
+  right: 450px;
+  z-index: 99999;
+}
+
+.newNote.active i{
+  transform: rotate(45deg);
+}
+
+.overlay{
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: -100%;
+  bottom: 0;
+  right: 0;
+  background: rgba(0,0,0, 0.7);
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+.overlay.active{
+  left: 0;
+}
+
+.newNoteForm{
+  width: 350px;
+  height: 100vh;
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  right: -350px;
+  background: #fff;
+  padding: 40px 20px;
+  transition: .3s ease-in-out;
+}
+
+.newNoteForm.active{
+  right: 0;
+}
+
+.newNoteForm.updateForm{
+  right: 0px !important;
+  left: -350px !important;
+}
+
+.newNoteForm.updateForm.active{
+    right: 0 !important;
+    left: 0 !important;
+}
+
+.newNoteForm h3{
+  display: inline-flex;
+  align-items: center;
+}
+
+.newNoteForm h3 i{
+  padding-top: 5px;
+  margin-left: 15px;
+  color: #db6c03;
+}
+
+.newNoteForm form{
+  margin-top: 40px;
+}
+
+.newNoteForm form label{
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 25px;
+}
+
+.newNoteForm form input[type="text"],
+.newNoteForm form textarea{
+  padding: 8px;
+  resize: none;
+  margin-top: 5px;
+  outline: 0;
+  border: 1px solid #bdbdbd;
+  display: block;
+  color: #888;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  caret-color: #db6c03;
+  transition: .3s ease-in-out;
+}
+
+.newNoteForm form textarea{
+  height: 150px;
+}
+
+.newNoteForm form input[type="text"]:focus,
+.newNoteForm form textarea:focus{
+  color: #000;
+  border-color: #494949;
+}
+
+.newNoteForm form input[type="radio"]{
+  display: none;
+}
+
+.themeSelection{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  margin-top: -15px;
+}
+
+.themeSelection label{
+  width: 15px;
+  height: 15px;
+  border-radius: 2px;
+  background: var(--i);
+  opacity: .8;
+}
+
+.themeSelection input:checked ~ label{
+  opacity: 1;
+  border-radius: 20px;
+  border: 1px solid #252525;
+}
+
+.newNoteForm form button{
+  display: block;
+  width: 100%;
+  padding: 8px;
+  font-weight: 500;
+  color: #000;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  background: #ff8f27;
+  font-family: "Poppins", sans-serif;
+  margin-top: 20px;
+  transition: .3s ease-in-out;
+}
+
+.newNoteForm form button:hover{
+  background: #fd7a00;
+}
+
+.newNoteForm form button.disable{
+  cursor: wait;
+  pointer-events:fill;
+}
+
+
+.binLayout{
+  width: 100%;
+  height: 60vh;
+  position: fixed;
+  bottom: -100vh;
+  left: 0;
+  background: #1a1919;
+  color: #fff;
+  padding: 40px;
+  overflow-y: scroll;
+  transition: .3s ease-in-out;
+}
+
+.binLayout.active{
+  bottom: 0px;
+}
+
+
+
+.binIcon{
+  width: 50px;
+  height: 50px;
+  background: #000000;
+  color: #ff7b00;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 30px;
+  left: 40px;
+  border-radius: 50%;
+  font-size: 22px;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+.binIcon i{
+  padding-top: 8px;
+}
+
+.binIcon.active{
+  bottom: 450px;
+  transform: rotate(90deg);
+}
+
+
+.binLayout h3{
+  color: #313131;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}
+
+
+@media (max-width: 768px) {
+  .container{
+    padding: 20px;
+  }
+
+  .noteGrid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .newNote{
+    bottom: 30px;
+    right: 20px;
+  }
+
+  .binIcon{
+    left: 20px;
+    bottom: 30px;
+  }
+
+  .binIcon.active{
+    top: 50px;
+  }
+
+  .binLayout{
+    height: 75vh;
+    padding: 25px;
+  }
+
+  .binLayout h1{
+    font-size: 20px;
+  }
+
+  .binLayout h3{
+    font-size: 14px;
+  }
+
+  .newNote.active{
+    right: 50%;
+    transform: translateX(50%);
+    z-index: 9999999;
+  }
+
+
+}

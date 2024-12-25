@@ -1,0 +1,62 @@
+
+.noteBox{
+    width: 100%;
+    background: #262626;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.noteBox p{
+    font-size: 13px;
+    color: #777;
+    font-size: 12px;
+    font-weight: 400;
+    margin-top: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin-bottom: 15px;
+}
+
+.noteBox button{
+    padding: 4px 12px;
+    background: #1f1f1f;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    font-size: 10px;
+    color: #888888;
+    font-family: "Poppins", sans-serif;
+    transition: .3s ease-in-out;
+}
+
+.noteBox button i{
+    margin-top: 4px;
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+.noteBox button:hover{
+    background: #ffbc64;
+    color: #000;
+}
+
+.btns{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.btns button:last-child:hover{
+    background: #ff2424;
+    color: #fff;
+}
