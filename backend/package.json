@@ -1,0 +1,18 @@
+{
+  "name": "notes-taking-app",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A app where user can save and manages their notes in one place",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "firoz | www.github.com/Codefiroz",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.2"
+  }
+}
