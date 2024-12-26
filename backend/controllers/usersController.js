@@ -2,6 +2,7 @@
 import User from '../models/usermodel.js'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
+import { environment } from '../config/environment.js'
 
 // Controller to get all notes
 export const getUsers = async (req, res) => {
@@ -60,7 +61,7 @@ export const loginUser = async (req, res) =>{
             if(!isPasswordValid){
                 res.status(400).send({"message": "incorrect password"});
             }else{
-                const token = jwt.sign({ id: finduser._id }, "SECRET123");
+                const token = jwt.sign({ id: finduser._id }, environment.JWTSECRET);
                 res.send({ message: "Logged in!", token });
             }
 
