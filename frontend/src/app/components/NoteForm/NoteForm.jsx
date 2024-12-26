@@ -7,9 +7,7 @@ export const NoteForm = () => {
     const [form, setForm] = useState("");
     const [button, setbutton] = useState("");
 
-    // const [title, setTitle] = useState("");
-    // const [content, setContent] = useState("");
-    // const [background, setBackground] = useState("");
+
     const [btnText, setBtnText] = useState("Create Note");
     const [btnStatus, setBtnStatus] = useState("");
     const [formData, setFormData] = useState({
@@ -99,51 +97,33 @@ export const NoteForm = () => {
         <textarea name="content" id="content" required onChange={handleChange}></textarea>
 
         <label htmlFor="color">Choose Theme :</label>
-        <div className="themeSelection">
-          <div>
-            <input type="radio" name="background" id="red" onChange={handleChange} value="#ff5d51" />
-            <label htmlFor="red" style={{ '--i': '#ff5d51'}}></label>
+          <div className="themeSelection">
+            {[
+              { id: "red", value: "#ff5d51" },
+              { id: "yellow", value: "#ffa000" },
+              { id: "yellow2", value: "#ffc700" },
+              { id: "green", value: "#87ff00" },
+              { id: "skyblue", value: "#5182ff" },
+              { id: "purple", value: "#7800ff" },
+              { id: "cyan", value: "#00ffb3" },
+              { id: "pink", value: "#ff5aa0" },
+            ].map((color) => (
+              <div key={color.id}>
+                <input
+                  type="radio"
+                  name="background"
+                  id={color.id}
+                  onChange={handleChange}
+                  value={color.value}
+                  hidden
+                />
+                <label htmlFor={color.id} style={{ "--i": color.value }}></label>
+              </div>
+            ))}
           </div>
-
-          <div>
-            <input type="radio" name="background" id="yellow" onChange={handleChange} value="#ffa000" />
-            <label htmlFor="yellow" style={{ '--i': '#ffa000'}}></label>
-          </div>
-
-          <div>
-            <input type="radio" name="background" id="yellow2" onChange={handleChange} value="#ffc700" />
-            <label htmlFor="yellow2" style={{ '--i': '#ffc700'}}></label>
-          </div>
-
-          <div>
-            <input type="radio" name="background" id="green" onChange={handleChange} value="#87ff00" />
-            <label htmlFor="green" style={{ '--i': '#87ff00'}}></label>
-          </div>
-
-          <div>
-            <input type="radio" name="background" id="skyblue" onChange={handleChange} value="#5182ff" />
-            <label htmlFor="skyblue" style={{ '--i': '#5182ff'}}></label>
-          </div>
-
-          <div>
-            <input type="radio" name="background" id="purple" onChange={handleChange} value="#7800ff" />
-            <label htmlFor="purple" style={{ '--i': '#7800ff'}}></label>
-          </div>
-
-          <div>
-            <input type="radio" name="background" id="cyan" onChange={handleChange} value="#00ffb3" />
-            <label htmlFor="cyan" style={{ '--i': '#00ffb3'}}></label>
-          </div>
-
-          <div>
-            <input type="radio" name="background" id="pink" onChange={handleChange} value="#ff5aa0" />
-            <label htmlFor="pink" style={{ '--i': '#ff5aa0'}}></label>
-          </div>
-
-        </div>
 
     <button type="submit" className={`${btnStatus}`}> 
-      Create Note 
+      {btnText}
     </button>
 
       </form>

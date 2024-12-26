@@ -8,11 +8,7 @@ import BinFolder from "./components/BinFolder/BinFolder";
 export default function Home() {
 
   const [notes, setNotes] = useState([]);
-  
-
-  
-
-
+   
   const fetchNote = async () => {
     try {
       const response = await fetch('http://localhost:8000/notes');
@@ -30,7 +26,7 @@ export default function Home() {
 
   useEffect(()=>{
     fetchNote();
-  }, [NoteForm])
+  }, [])
 
   return (
     <>

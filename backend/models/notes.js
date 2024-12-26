@@ -34,7 +34,7 @@ const NoteSchema = new mongoose.Schema(
     }
 );
 
-// Create the model
+// Create the Note model
 const Note = mongoose.model("Note", NoteSchema);
 
 // Export the model as default

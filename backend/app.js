@@ -4,6 +4,7 @@ import cors from 'cors'
 import { environment } from './config/environment.js';
 import connectDB from './config/db.js';
 import { getAllNotes, createNote, deleteNote, updateNote, MoveToBin, RestoreNote, GetOneNote, getBinNotes } from './controllers/notesController.js';
+import { getUsers, loginUser, registerUser } from './controllers/usersController.js';
 
 // initializing the app
 const app = express();
@@ -29,7 +30,14 @@ connectDB();
 app.get('/', (req, res)=>{
     res.status(200).send("Hi Server");
 })
-// Routes setup
+
+// user Routes setup
+app.get('/users', getUsers);  // Fetch all users
+app.post('/register', registerUser);  // Register Users
+app.post('/login', loginUser);  // Login into account user
+
+
+// Notes Routes setup
 app.get('/getBinNotes', getBinNotes);  // Fetch all notes
 app.get('/notes', getAllNotes);  // Fetch all notes
 app.post('/create', createNote);  // Create a new note
