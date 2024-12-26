@@ -1,0 +1,99 @@
+.registerLayout{
+    width: 100%;
+    height: 100vh;
+    background: #fab700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-items: center;
+}
+
+.registerContainer{
+    width: 500px;
+    padding: 20px;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.registerContainer h1{
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.registerContainer p{
+    color: #888;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.registerContainer form label{
+    font-size: 14px;
+    color: #252525;
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.registerContainer form input[type="text"],
+.registerContainer form input[type="email"],
+.registerContainer form input[type="password"]{
+    padding: 10px;
+    display: block;
+    width: 100%;
+    outline: 0;
+    font-family: "Poppins", sans-serif;
+    border: 1px solid #b8b8b8;
+}
+
+.registerContainer form .passVisiblity{
+    margin-top: 20px;
+}
+
+.registerContainer form .passVisiblity label{
+    font-size: 13px;
+    margin: 0;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+.registerContainer form .passVisiblity label i{
+    margin-left: 5px;
+    margin-top: 4px;
+    font-size: 15px;
+}
+
+.registerContainer form .passVisiblity input:checked ~ label{
+    color: #ff961f;
+}
+
+.registerContainer form button{
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    color: #000;
+    background: #fab700;
+    font-weight: 500;
+    margin-top: 20px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+}
+
+.error{
+    color: red;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 500;
+    display: block;
+    margin: 10px 0px;
+}
+
