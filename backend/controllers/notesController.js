@@ -5,7 +5,7 @@ import Note from "../models/notes.js";
 // Controller to get all notes
 export const getAllNotes = async (req, res) => {
     try {
-        let mynotes = await Note.find({isBin: false}).sort({ createdAt: -1 });
+        let mynotes = await Note.find({isBin: false}).sort({ updatedAt: -1 });
         res.status(200).json(mynotes);
     } catch (error) {
         console.error("Error while fetching notes:", error);
@@ -16,7 +16,7 @@ export const getAllNotes = async (req, res) => {
 // Controller to get all notes
 export const getBinNotes = async (req, res) => {
     try {
-        let mynotes = await Note.find({isBin: true}).sort({ createdAt: -1 });
+        let mynotes = await Note.find({isBin: true}).sort({ updatedAt: -1 });
         res.status(200).json(mynotes);
     } catch (error) {
         console.error("Error while fetching notes:", error);
