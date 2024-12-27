@@ -1,27 +1,25 @@
 "use client"
 
 import { useState, useEffect } from 'react';
-import style from './register.module.css'
+import style from '../register/register.module.css'
 import Cookies from 'js-cookie';
 
-const Register = () => {
+const Login = () => {
+  useEffect(() => {
+    const token = Cookies.get("userToken"); // Check for cookie
 
-     useEffect(() => {
-        const token = Cookies.get("userToken"); // Check for cookie
-    
-        if (token) window.location.href = "/"
-    
-      }, []);
+    if (token) window.location.href = "/"
+
+  }, []);
 
     const [formData, setFormData] = useState({
-          name: '',
           email: '',
           password: '',
         });
     const [passType, setPassType] = useState("password");
     const [passLabel, setPassLabel] = useState("Show Password");
     const [passIcon, setPassIcon] = useState("fi-rr-eye");
-    const [BtnText, setBtnText] = useState("Sign up");
+    const [BtnText, setBtnText] = useState("Sign in");
 
     const [error, setError] = useState("");
 
@@ -55,15 +53,7 @@ const Register = () => {
                 setError("");
                 setBtnText("Working...");
         
-                if(formData.name == ""){
-                    setBtnText("Sign up");
-                    setError("*Please enter a valid name");
-                    return false;
-                }else if(formData.name.length < 3){
-                    setBtnText("Sign up");
-                    setError("*Please enter a valid name");
-                    return false;
-                }else if(formData.email == ""){
+                if(formData.email == ""){
                     setBtnText("Sign up");
                     setError("*Please enter a valid email address");
                     return false;
@@ -73,17 +63,13 @@ const Register = () => {
                     return false;
                 }else if(formData.password == ""){
                     setBtnText("Sign up");
-                    setError("*Please create a password");
-                    return false;
-                }else if(formData.password.length < 6){
-                    setBtnText("Sign up");
-                    setError("*Password must be 6 character long.");
+                    setError("*Please enter a password");
                     return false;
                 }else{
 
                     setBtnText("Working...");
 
-                    const response = await fetch('http://localhost:8000/register', {
+                    const response = await fetch('http://localhost:8000/login', {
                         method: 'POST', // Method itself
                         headers: {
                           'Content-Type': 'application/json', // Make sure the server expects JSON
@@ -98,15 +84,20 @@ const Register = () => {
                       const result = await response.json(); // Parse JSON response
                       if(result.error){
                         setError(result.message);
+                        setBtnText("Sign in");
                       }else{
-                        Cookies.set('userToken', result.token, { expires: 365 });
-                        window.location.href  = "/";
-                        setBtnText("Sign up");
+                        
+                        Cookies.set('userToken', result.token, { expires: 365 })
+
+                        setBtnText("Sign in");
                         setFormData({
                             name: "",
                             email : "",
                             password: ""
                         })
+
+                        window.location.href = "/";
+                        
                       }
 
 
@@ -128,22 +119,13 @@ const Register = () => {
 
         <div className={style.registerContainer}>
 
-                <h1>Sign up</h1>
+                <h1>Sign in</h1>
                 <p>
-                    Register in mynoteapp and get all your notes inone place.
+                    log in to your account & manage your notes.
                 </p>
 
                 <form onSubmit={handleSubmit}>
 
-
-                <label htmlFor="name">Name</label>
-                    <input 
-                    type="text"
-                    name='name'
-                    id='name'
-                    value={formData.name}
-                    onChange={handleChange}
-                     />
 
                     <label htmlFor="email">Email Address</label>
                     <input 
@@ -183,4 +165,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default Login

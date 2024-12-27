@@ -1,6 +1,7 @@
 // import require packages
 import express from 'express';
 import cors from 'cors'
+import cookieParser from 'cookie-parser';
 import { environment } from './config/environment.js';
 import connectDB from './config/db.js';
 import { getAllNotes, createNote, deleteNote, updateNote, MoveToBin, RestoreNote, GetOneNote, getBinNotes } from './controllers/notesController.js';
@@ -11,10 +12,10 @@ const app = express();
 
 // Allow all origins
 app.use(cors());
-
 app.use(cors({
     origin: 'http://localhost:3000', // Replace with your frontend's URL
   }));
+app.use(cookieParser())
 
 // Define port from environment variables 
 const PORT = environment.PORT;

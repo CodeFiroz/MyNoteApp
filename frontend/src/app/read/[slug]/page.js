@@ -2,10 +2,16 @@
 import { useState, useEffect } from 'react';
 import style from './read.module.css'
 import { useParams } from 'next/navigation';
-
-
+import Cookies from 'js-cookie';
 
 const Read = () => {
+
+   useEffect(() => {
+        const token = Cookies.get("userToken"); // Check for cookie
+    
+        if (!token) window.location.href = "/login"
+    
+      }, []);
 
   const [note, setNote] = useState([]);
   const params = useParams();
@@ -30,10 +36,10 @@ const Read = () => {
         console.error('Fetch failed:', error.message);
       }
     };
+    useEffect(() => {
+        fetchNote();  // Fetch notes only if token is found
   
-    useEffect(()=>{
-      fetchNote();
-    }, [])
+    }, []);
 
     const NoteId = note._id;
 
@@ -98,7 +104,11 @@ const Read = () => {
          {note.title}
         </h1>
 
-        <textarea value={note.content} readOnly></textarea>
+       
+
+        <pre>
+        {note.content}
+        </pre>
 
        
 

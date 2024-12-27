@@ -2,8 +2,16 @@
 import { useState, useEffect } from "react";
 import style from "./update.module.css";
 import { useParams } from "next/navigation";
+import Cookies from "js-cookie";
+const Update = () => {
 
-const Read = () => {
+    useEffect(() => {
+      const token = Cookies.get("userToken"); // Check for cookie
+  
+      if (!token) window.location.href = "/login"
+  
+    }, []);
+
   const [note, setNote] = useState({});
   const [noteTitle, setNoteTitle] = useState("");
 
@@ -140,4 +148,4 @@ const Read = () => {
   );
 };
 
-export default Read;
+export default Update;

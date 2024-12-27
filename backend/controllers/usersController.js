@@ -25,7 +25,7 @@ export const registerUser = async (req, res) => {
         let finduser = await User.findOne({ email });
 
         if(finduser){
-            res.send({"message": `${email} is already registred`});
+            res.send({error: "User already exist", message: `${email} is already registred. Please log in`});
         }else{
 
         
@@ -35,7 +35,8 @@ export const registerUser = async (req, res) => {
         let newUser = new User({ "name": name, "email": email, "password": hashPassword });
 
         await newUser.save();
-        res.status(201).send({ "message": "Successfully create user" });
+        const token = jwt.sign({ id: newUser._id }, environment.JWTSECRET);
+        res.send({ message: "Successfully create user", token });
 
     }
 
@@ -53,13 +54,13 @@ export const loginUser = async (req, res) =>{
         let finduser = await User.findOne({ email });
 
         if(!finduser){
-            res.status(400).send({"message": `${email} is not regiistred.`})
+            res.send({error: "Unknown user.", "message": `${email} is not registred.`})
         }else{
 
             const isPasswordValid = await bcrypt.compare(password, finduser.password);
 
             if(!isPasswordValid){
-                res.status(400).send({"message": "incorrect password"});
+                res.send({error: "incorrect password", message: "Its seems like you entred wrong password"});
             }else{
                 const token = jwt.sign({ id: finduser._id }, environment.JWTSECRET);
                 res.send({ message: "Logged in!", token });
@@ -69,7 +70,7 @@ export const loginUser = async (req, res) =>{
 
 
     }catch(error){
-        res.status(400).send({"message" : "Error while perfoming task"});
+        res.send({error, "message" : "Error while perfoming task"});
     }
 }
 
