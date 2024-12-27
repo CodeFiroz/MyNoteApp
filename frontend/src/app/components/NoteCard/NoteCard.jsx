@@ -1,6 +1,7 @@
 import style from './notecard.module.css'
 import Link from 'next/link';
 
+
 const NoteCard = (props) => {
 
     const NoteId = props.id;
@@ -45,9 +46,12 @@ const NoteCard = (props) => {
         <h4>
            {props.title}
         </h4>
+        <div className={style.shortContent}>
         <p>
-            {props.content}
+        { props.content }
         </p>
+            
+        </div>
 
         <div className={style.actionBtns}>
 

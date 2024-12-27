@@ -3,6 +3,8 @@ import { useState } from "react";
 
 export const NoteForm = () => {
 
+
+
     const [overlay, setOverlay] = useState("");
     const [form, setForm] = useState("");
     const [button, setbutton] = useState("");
@@ -41,6 +43,8 @@ export const NoteForm = () => {
     const handleSubmit = async (e)=>{
       e.preventDefault();
       
+   
+
       setBtnText("Working...");
 
       try {
@@ -92,6 +96,8 @@ export const NoteForm = () => {
 
         <label htmlFor="title">Note Title</label>
         <input type="text" name="title" required onChange={handleChange} />
+
+       
 
         <label htmlFor="content">Content</label>
         <textarea name="content" id="content" required onChange={handleChange}></textarea>

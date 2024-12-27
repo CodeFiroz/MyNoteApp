@@ -3,21 +3,22 @@ import { useState, useEffect } from "react";
 import style from "./update.module.css";
 import { useParams } from "next/navigation";
 import Cookies from "js-cookie";
+
+
 const Update = () => {
+  // Check if user is logged in
+  useEffect(() => {
+    const token = Cookies.get("userToken");
+    if (!token) window.location.href = "/login";
+  }, []);
 
-    useEffect(() => {
-      const token = Cookies.get("userToken"); // Check for cookie
-  
-      if (!token) window.location.href = "/login"
-  
-    }, []);
-
-  const [note, setNote] = useState({});
+  // State to store note and note title
+  const [note, setNote] = useState({ content: "", background: "#ffffff" }); // default background
   const [noteTitle, setNoteTitle] = useState("");
 
-  const params = useParams();
-  const { slug } = params;
+  const { slug } = useParams();
 
+  // Fetch the note from the server
   const fetchNote = async () => {
     try {
       const response = await fetch(`http://localhost:8000/note/${slug}`);
@@ -25,72 +26,70 @@ const Update = () => {
         throw new Error("Error in server: " + response.statusText);
       }
       const data = await response.json();
-      console.log(data); // Do something with the data
-      setNote(data); // Set the fetched note
+      console.log(data);
+      setNote({
+        content: data.content || "",
+        title: data.title || "",
+        background: data.background || "#ffffff", // Set background color from fetched data
+      });
+      setNoteTitle(data.title); // Update the title
     } catch (error) {
       console.error("Fetch failed:", error.message);
     }
   };
 
-  // Fetch note data on mount
   useEffect(() => {
-    fetchNote();
-  }, []);
-
-  // Sync noteTitle with fetched note data
-  useEffect(() => {
-    if (note.title) {
-      setNoteTitle(note.title);
+    if (slug) {
+      fetchNote();
     }
-  }, [note]);
+  }, [slug]);
 
+
+
+  // Update noteTitle and content dynamically
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "title") {
-      setNoteTitle(value); // Update noteTitle directly
+      setNoteTitle(value);
     }
     setNote({
       ...note,
-      [name]: value, // Update the note object
+      [name]: value, // Dynamically update the note object
     });
   };
 
-
   const handleSubmit = async (e) => {
-    e.preventDefault(); 
-   
+    e.preventDefault();
+
+    const contentHTML = editor.getHTML();
     const body = {
-        "title": noteTitle,
-        "content": note.content,
-        "background": note.background
-    }
+      title: noteTitle,
+      content: contentHTML,
+      background: note.background,
+    };
 
     try {
-        const response = await fetch(`http://localhost:8000/update/${note._id}`, {
-          method: 'POST', // Method itself
-          headers: {
-            'Content-Type': 'application/json', // Make sure the server expects JSON
-          },
-          body: JSON.stringify(body), // Convert JS object to JSON string
-        });
-    
-        if (!response.ok) {
-          throw new Error('Failed to send data');
-        }
-    
-        const result = await response.json(); // Parse JSON response
-        if(result){
+      const response = await fetch(`http://localhost:8000/update/${note._id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
 
-            window.location.href = "/";
-
-
-        }else{
-          alert("Error while updating notes.")
-        }
-      } catch (error) {
-        alert("Error while updating notes. Error ::: " + error)
+      if (!response.ok) {
+        throw new Error("Failed to send data");
       }
 
+      const result = await response.json();
+      if (result) {
+        window.location.href = "/";
+      } else {
+        alert("Error while updating notes.");
+      }
+    } catch (error) {
+      alert("Error while updating notes. Error ::: " + error);
+    }
   };
 
   return (
@@ -108,6 +107,8 @@ const Update = () => {
             placeholder="Title"
             value={noteTitle}
           />
+
+      
           <textarea
             name="content"
             onChange={handleChange}

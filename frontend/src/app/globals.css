@@ -189,6 +189,23 @@ h6{
   border: 1px solid #252525;
 }
 
+.newNoteForm form .ProseMirror{
+  padding: 8px;
+  resize: none;
+  height: 200px;
+  margin-top: 5px;
+  outline: 0;
+  border: 1px solid #bdbdbd;
+  display: block;
+  color: #888;
+  width: 100%;
+  font-size: 13px;
+  overflow-y: scroll;
+  font-family: "Poppins", sans-serif;
+  caret-color: #db6c03;
+  transition: .3s ease-in-out;
+}
+
 .newNoteForm form button{
   display: block;
   width: 100%;
