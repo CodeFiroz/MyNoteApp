@@ -1,11 +1,14 @@
 // import the note schema 
 import Note from "../models/notes.js"; 
-
+import mongoose from "mongoose";
 
 // Controller to get all notes
 export const getAllNotes = async (req, res) => {
     try {
-        let mynotes = await Note.find({isBin: false}).sort({ updatedAt: -1 });
+
+        const {userid} = req.body;
+
+        const mynotes = await Note.find({isBin: false}).sort({ updatedAt: -1});        
         res.status(200).json(mynotes);
     } catch (error) {
         console.error("Error while fetching notes:", error);
@@ -40,11 +43,11 @@ export const GetOneNote = async (req, res) => {
 // Controller to create a new note
 export const createNote = async (req, res) => {
     try {
-        let { title, content, background } = req.body;
+        let { title, content, background, author } = req.body;
 
         let slug = title.split(' ').join('-').toLowerCase();
 
-        let newNote = new Note({ title, content, slug, background });
+        let newNote = new Note({ title, content, slug, background, author });
 
         await newNote.save();
         res.status(201).send({ "message": "Successfully Inserted Data" });

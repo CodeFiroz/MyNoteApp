@@ -16,7 +16,12 @@ const UserSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        
+        notes : {
+            type: [mongoose.Schema.Types.ObjectId],
+            required: true,
+            default: [],
+            ref: 'Note'
+        }
     },
     {
         timestamps: true,

@@ -1,9 +1,18 @@
 "use client"
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
+import { useUser } from "@/app/context/UserContext/UserContext";
 
 export const NoteForm = () => {
 
+  const {userId} = useUser();
 
+useEffect(()=>{
+    const token = Cookies.get("userToken"); // Check for cookie
+  
+      if (!token) window.location.href = "/login";
+        
+}, [])
 
     const [overlay, setOverlay] = useState("");
     const [form, setForm] = useState("");
@@ -12,11 +21,12 @@ export const NoteForm = () => {
 
     const [btnText, setBtnText] = useState("Create Note");
     const [btnStatus, setBtnStatus] = useState("");
-    const [formData, setFormData] = useState({
-      title: '',
-      content: '',
-      background: '',
-    });
+      const [formData, setFormData] = useState({
+        title: '',
+        content: '',
+        background: '',
+        author: userId
+      });
 
 
 

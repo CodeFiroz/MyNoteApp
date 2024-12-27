@@ -1,17 +1,19 @@
 "use client"
 
 import NoteCard from "./components/NoteCard/NoteCard";
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import { NoteForm } from "./components/NoteForm/NoteForm";
 import Cookies from "js-cookie";
 import BinFolder from "./components/BinFolder/BinFolder";
+import { useUser } from "./context/UserContext/UserContext";
+
 
 export default function Home() {
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(true);
 
 
-
+  const {userid} = useUser();
 
     // Fetch notes if authenticated
 
@@ -50,6 +52,8 @@ export default function Home() {
       <div className="container">
         <NoteForm />
         <BinFolder />
+
+
 
         <div className="noteGrid">
           {loading ? (
